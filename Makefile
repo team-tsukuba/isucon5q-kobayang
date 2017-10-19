@@ -30,4 +30,4 @@ reset-nginx-log:
 	sudo rm /var/log/nginx/access.log & touch /var/log/nginx/access.log
 
 alp:
-	sudo alp -f /var/log/nginx/access.log  --sum  -r --aggregates '/profile/\w+, /diary/entry/\d+, /diary/entries/\w+, /diary/comment/\d+, /friends/\w+' --start-time-duration 5m
+	sudo alp -f /var/log/nginx/access.log  --sum  -r --aggregates='/diary/comment/*,/diary/entry/*,/profile/*,/diary/entries/*,/friends/*'
