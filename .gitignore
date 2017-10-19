@@ -20,3 +20,5 @@ webapp/scala
 .ssh/
 .viminfo
 .xbuild/
+.gitconfig
+.config/
