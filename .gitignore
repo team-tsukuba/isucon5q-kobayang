@@ -22,3 +22,5 @@ webapp/scala
 .xbuild/
 .gitconfig
 .config/
+*.pid
+
