@@ -6,7 +6,7 @@ service-reload:
 	cd /home/isucon/webapp/ruby
 	(cd /home/isucon/webapp/ruby; ~/.local/ruby/bin/bundle install 1 > /dev/null)
 	sudo systemctl restart isuxi.ruby.service
-	cd /home/isucon
+	cd
 
 nginx-reload:
 	sudo nginx -s reload
@@ -23,10 +23,13 @@ db_down:
 
 ## Logging
 nginx-log:
-	@sudo tail -f /var/log/nginx/access.log
+	sudo tail -f /var/log/nginx/access.log
 
 nginx-error-log:
-	@sudo tail -f /var/log/nginx/error.log
+	sudo tail -f /var/log/nginx/error.log
 
 reset-nginx-log:
 	sudo rm /var/log/nginx/access.log & touch /var/log/nginx/access.log
+
+alp:
+	sudo alp -f /var/log/nginx/access.log  --sum  -r --aggregates '/profile/\w+, /diary/entry/\d+, /diary/entries/\w+, /diary/comment/\d+, /friends/\w+' --start-time-duration 5m
