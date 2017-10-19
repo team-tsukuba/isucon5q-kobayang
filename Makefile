@@ -3,11 +3,10 @@ system-reload:
 	make service-reload
 
 service-reload:
-	cd webapp/ruby
-	(cd /home/isucon/webapp/ruby; ~/.local/ruby/bin/bundle install)
+	cd /home/isucon/webapp/ruby
+	(cd /home/isucon/webapp/ruby; ~/.local/ruby/bin/bundle install 1 > /dev/null)
 	sudo systemctl restart isuxi.ruby.service
-	cd
-	#make db_up
+	cd /home/isucon
 
 nginx-reload:
 	sudo nginx -s reload
@@ -20,4 +19,14 @@ db_up:
 	/home/isucon/webapp/go/bin/goose up
 
 db_down:
-	/home/isucon/webapp/go/bin/goose down 
+	/home/isucon/webapp/go/bin/goose down
+
+## Logging
+nginx-log:
+	@sudo tail -f /var/log/nginx/access.log
+
+nginx-error-log:
+	@sudo tail -f /var/log/nginx/error.log
+
+reset-nginx-log:
+	sudo rm /var/log/nginx/access.log & touch /var/log/nginx/access.log
