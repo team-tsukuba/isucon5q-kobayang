@@ -3,10 +3,8 @@ system-reload:
 	make service-reload
 
 service-reload:
-	cd /home/isucon/webapp/ruby
-	(cd /home/isucon/webapp/ruby; ~/.local/ruby/bin/bundle install 1 > /dev/null)
+	cd /home/isucon/webapp/ruby; /home/isucon/.local/ruby/bin/bundle install 1>/dev/null
 	sudo systemctl restart isuxi.ruby.service
-	cd
 
 nginx-reload:
 	sudo nginx -s reload
